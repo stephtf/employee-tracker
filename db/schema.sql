@@ -3,17 +3,10 @@ CREATE DATABASE company_db;
 
 USE company_db; 
 
-CREATE TABLE employee (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    first_name VARCHAR(30) NOT NULL, 
-    last_name VARCHAR(30) NOT NULL, 
-    role_id INT, 
-    manager_id INT, 
-    FOREIGN KEY (role_id) 
-    REFERENCES role(id)
-    ON DELETE SET NULL,
-    INDEX (role_id)
-); 
+CREATE TABLE department (
+    id INT AUTO_INCREMENT PRIMARY KEY, 
+    department_name VARCHAR(30) NOT NULL
+);
 
 CREATE TABLE role ( 
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -26,10 +19,21 @@ CREATE TABLE role (
     INDEX (department_id)
 ); 
 
-CREATE TABLE department (
-    id INT AUTO_INCREMENT PRIMARY KEY, 
-    department_name VARCHAR(30) NOT NULL, 
-);
+CREATE TABLE employee (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(30) NOT NULL, 
+    last_name VARCHAR(30) NOT NULL, 
+    role_id INT, 
+    manager_id INT, 
+    FOREIGN KEY (role_id) 
+    REFERENCES role(id)
+    ON DELETE SET NULL,
+    INDEX (role_id)
+); 
+
+
+
+
 
 
 
