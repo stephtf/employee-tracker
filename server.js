@@ -48,13 +48,22 @@ const company_db = mysql.createConnection(
 
 
 // variables for EMPLOYEE 
-const newFirst = `"Rafael"`; 
-const newLast = `"Nadal"`; 
-const newRoleId = `"6"`; 
-const newManagerId = `"7"`;
+// const newFirst = `"Rafael"`; 
+// const newLast = `"Nadal"`; 
+// const newTitle = `"Engineer"`; 
+// const newManagerId = `"7"`;
 
 // query for EMPLOYEE
-company_db.query(`INSERT INTO employee (first_name, last_name, role_id, manager_id) VALUES (${newFirst}, ${newLast}, ${newRoleId}, ${newManagerId})`,  
+// company_db.query(`INSERT INTO employee (first_name, last_name, job_title, manager_id) VALUES (${newFirst}, ${newLast}, ${newTitle}, ${newManagerId})`,  
+// (err,result) => {
+//   if (err) {
+//     console.log(err)
+//   }
+//   console.log(result)
+// });
+
+// update employee job title 
+company_db.query(`UPDATE employee SET job_title = "${updateJobtitle}" WHERE id=${updateJobId}`,   
 (err,result) => {
   if (err) {
     console.log(err)

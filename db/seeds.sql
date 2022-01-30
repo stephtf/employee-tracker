@@ -1,8 +1,8 @@
-INSERT INTO employee (first_name, last_name, role_id, manager_id)
-VALUES ("Steph", "Fajardo", 1, 5),
-       ("Juba", "Diani", 2, 4),
-       ("Quiping", "Yu", 3, 3),
-       ("Manasa", "Gopal", 4, 2);
+INSERT INTO employee (first_name, last_name, job_title, manager_id)
+VALUES ("Steph", "Fajardo", "Salesperson", 5),
+       ("Juba", "Diani", "Lead Engineer", 4),
+       ("Quiping", "Yu", "Account Manager", 3),
+       ("Manasa", "Gopal", "Lawyer", 2);
 
 INSERT INTO role (id, title, salary, department_id)
 VALUES (001, "Salesperson", 50000, 1),
