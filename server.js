@@ -62,8 +62,12 @@ const company_db = mysql.createConnection(
 //   console.log(result)
 // });
 
+// variables for update EMPLOYEE 
+const updateJobtitle = `"Security Officer"`;
+const updateJobId = `"14"`;
+
 // update employee job title 
-company_db.query(`UPDATE employee SET job_title = "${updateJobtitle}" WHERE id=${updateJobId}`,   
+company_db.query(`UPDATE employee SET job_title = ${updateJobtitle} WHERE id=${updateJobId}`,   
 (err,result) => {
   if (err) {
     console.log(err)
