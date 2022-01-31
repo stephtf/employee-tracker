@@ -45,9 +45,10 @@ const roleQ = [
         name: 'roleSalary'
     },
     {
-        type: 'input',
-        message: 'Enter the department ID',
-        name: 'roleId'
+        type: 'list',
+        message: 'What is the department ID of this new role?',
+        choices: ['001', '002', '003', '004', '005', '006', '007', '008'],
+        name: 'deptId'
     },
 ]
 
@@ -71,7 +72,13 @@ const employeeQ = [
         type: 'input',
         message: "What is the employee's manager ID?",
         name: 'managerId',
-    }
+    },
+    {
+        type: 'list',
+        message: 'What is the role ID of this new employee',
+        choices: ['001', '002', '003', '004', '005', '006', '007', '008'],
+        name: 'roleId'
+    },
 ]
 
 const updateQ = [
@@ -114,7 +121,9 @@ const addDepartment = () => {
                 if (err) {
                 console.log(err)
                 }
-                console.log(`${data.newDepartment} has been added to the database!`)
+                console.log(`
+                
+                ${data.newDepartment} has been added to the database!`)
             });
             firstQuestion(); 
         })
@@ -125,11 +134,13 @@ const addRole = () => {
         .prompt(roleQ)
         .then((data) => {
             // query for ROLE
-            company_db.query(`INSERT INTO role (title, salary, department_id) VALUES ("${data.roleTitle}", "${data.roleSalary}", "${data.roleId}")`, (err, result) => {
+            company_db.query(`INSERT INTO role (title, salary, department_id) VALUES ("${data.roleTitle}", "${data.roleSalary}", "${data.deptId}")`, (err, result) => {
                 if (err) {
                 console.log(err)
                 }
-                console.log(`${data.roleTitle} has been added to the database!`)
+                console.log(`
+                
+                ${data.roleTitle} has been added to the database!`)
             });
             firstQuestion(); 
         })
@@ -141,12 +152,14 @@ const addEmployee = () => {
         .prompt(employeeQ)
         .then((data) => {
             // query for EMPLOYEE
-            company_db.query(`INSERT INTO employee (first_name, last_name, job_title, manager_id) VALUES ("${firstName}", "${lastName}", "${jobTitle}", "${managerId})"`,  
+            company_db.query(`INSERT INTO employee (first_name, last_name, job_title, role_id, manager_id) VALUES ("${data.firstName}", "${data.lastName}", "${data.jobTitle}", "${data.roleId}", "${data.managerId}")`,  
             (err,result) => {
             if (err) {
                 console.log(err)
             }
-            console.log(`${data.firstName} ${data.lastName} has been added to the database!`)
+            console.log(`
+            
+            ${data.firstName} ${data.lastName} has been added to the database!`)
             });
             firstQuestion(); 
         })
@@ -162,8 +175,11 @@ const updateTitle = () => {
             if (err) {
                 console.log(err)
             }
-            console.log(`Their new job title, ${data.updateTitle}, has been added to the database!`)
+            console.log(`
+            
+            Congratulations on the new job! The new title, ${data.updateTitle}, has been added to the database!`)
             });
+            firstQuestion();
         })
 }
 
