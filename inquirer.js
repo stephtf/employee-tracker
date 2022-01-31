@@ -1,4 +1,19 @@
 const inquirer = require("inquirer");
+const mysql = require('mysql2');
+
+// connect to database
+const company_db = mysql.createConnection(
+    {
+      host: 'localhost',
+      // mySQL username,
+      user: 'root',
+      // mySQL password
+      password: '',
+      database: 'company_db'
+    },
+    console.log('')
+  );
+  
 
 // view options
 const optionsQ = [
@@ -68,23 +83,28 @@ const updateQ = [
 ]
 
 
-
 // prompts 
 const firstQuestion = () => {
     return inquirer 
         .prompt(optionsQ)
         .then((data) => {
            if (data.menuOptions == "Add a new department") {
-               departmentQuestion(); 
+               addDepartment(); 
            }
  });
 }
 
-const departmentQuestion = () => {
+const addDepartment = () => {
     return inquirer 
         .prompt(departmentQ)
         .then((data) => {
-            console.log(data.newDepartment); 
+        // query for DEPARTMENT (to add this new data into the database)
+            company_db.query(`INSERT INTO department( department_name) VALUES ("${data.newDepartment}")`, (err,result) => {
+                if (err) {
+                console.log(err)
+                }
+                console.log('')
+            });
         })
 }
 
