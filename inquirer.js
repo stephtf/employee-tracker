@@ -1,5 +1,6 @@
 const inquirer = require("inquirer");
 const mysql = require('mysql2');
+const cTable = require('console.table');
 
 // connect to database
 const company_db = mysql.createConnection(
@@ -108,9 +109,25 @@ const firstQuestion = () => {
                addEmployee(); 
            } else if (data.menuOptions == "Update an employee's job title") {
                updateTitle(); 
-           } 
- });
+           } else if (data.menuOptions == "View departments") {
+                company_db.query(`SELECT * FROM department`, function (err,results) {
+                console.table(results); 
+                firstQuestion(); 
+            }) 
+           } else if (data.menuOptions == "View roles") {
+                company_db.query(`SELECT * FROM role`, function (err,results) {
+                console.table(results); 
+                firstQuestion(); 
+            }) 
+           } else if (data.menuOptions == "View employees") {
+                company_db.query(`SELECT * FROM employee`, function (err,results) {
+                console.table(results); 
+                firstQuestion(); 
+            })
+        }
+})
 }
+
 
 const addDepartment = () => {
     return inquirer 
@@ -184,4 +201,4 @@ const updateTitle = () => {
 }
 
 // starts the first question when document is run
-firstQuestion(); 
+firstQuestion();
