@@ -77,6 +77,11 @@ const employeeQ = [
 const updateQ = [
     {
         type: 'input', 
+        message: "What is the employee's ID number?",
+        name: 'idNumber'
+    },
+    {
+        type: 'input', 
         message: "What is the employee's new job title?",
         name: 'updateTitle'
     }
@@ -120,13 +125,45 @@ const addRole = () => {
         .prompt(roleQ)
         .then((data) => {
             // query for ROLE
-            company_db.query(`INSERT INTO role (title, salary, department_id) VALUES (${data.roleTitle}, ${data.roleSalary}, ${data.roleId})`, (err, result) => {
+            company_db.query(`INSERT INTO role (title, salary, department_id) VALUES ("${data.roleTitle}", "${data.roleSalary}", "${data.roleId}")`, (err, result) => {
                 if (err) {
                 console.log(err)
                 }
                 console.log(`${data.roleTitle} has been added to the database!`)
             });
             firstQuestion(); 
+        })
+}
+
+
+const addEmployee = () => {
+    return inquirer 
+        .prompt(employeeQ)
+        .then((data) => {
+            // query for EMPLOYEE
+            company_db.query(`INSERT INTO employee (first_name, last_name, job_title, manager_id) VALUES ("${firstName}", "${lastName}", "${jobTitle}", "${managerId})"`,  
+            (err,result) => {
+            if (err) {
+                console.log(err)
+            }
+            console.log(`${data.firstName} ${data.lastName} has been added to the database!`)
+            });
+            firstQuestion(); 
+        })
+}
+
+const updateTitle = () => {
+    return inquirer 
+        .prompt(updateQ) 
+        .then((data) => {
+            // update employee job title 
+            company_db.query(`UPDATE employee SET job_title = "${data.updateTitle}" WHERE id = "${data.idNumber}"`,   
+            (err,result) => {
+            if (err) {
+                console.log(err)
+            }
+            console.log(`Their new job title, ${data.updateTitle}, has been added to the database!`)
+            });
         })
 }
 
