@@ -47,7 +47,7 @@ const roleQ = [
     {
         type: 'input',
         message: 'Enter the department ID',
-        name: 'roleID'
+        name: 'roleId'
     },
 ]
 
@@ -90,7 +90,13 @@ const firstQuestion = () => {
         .then((data) => {
            if (data.menuOptions == "Add a new department") {
                addDepartment(); 
-           }
+           } else if (data.menuOptions == "Add a new role") {
+               addRole(); 
+           } else if (data.menuOptions == "Add a new employee") {
+               addEmployee(); 
+           } else if (data.menuOptions == "Update an employee's job title") {
+               updateTitle(); 
+           } 
  });
 }
 
@@ -98,14 +104,31 @@ const addDepartment = () => {
     return inquirer 
         .prompt(departmentQ)
         .then((data) => {
-        // query for DEPARTMENT (to add this new data into the database)
+            // query for DEPARTMENT (to add this new data into the database)
             company_db.query(`INSERT INTO department( department_name) VALUES ("${data.newDepartment}")`, (err,result) => {
                 if (err) {
                 console.log(err)
                 }
-                console.log('')
+                console.log(`${data.newDepartment} has been added to the database!`)
             });
+            firstQuestion(); 
         })
 }
 
+const addRole = () => {
+    return inquirer 
+        .prompt(roleQ)
+        .then((data) => {
+            // query for ROLE
+            company_db.query(`INSERT INTO role (title, salary, department_id) VALUES (${data.roleTitle}, ${data.roleSalary}, ${data.roleId})`, (err, result) => {
+                if (err) {
+                console.log(err)
+                }
+                console.log(`${data.roleTitle} has been added to the database!`)
+            });
+            firstQuestion(); 
+        })
+}
+
+// starts the first question when document is run
 firstQuestion(); 
