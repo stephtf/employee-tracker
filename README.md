@@ -6,7 +6,7 @@ This app allows the user to easily keep track of their employees, roles, and dep
 
 ## Links
 Check out the walkthrough video I made: 
-https://watch.screencastify.com/v/hxeJZ4iX1U8zDiDojJrD
+https://youtu.be/cG3FBvz3h7w
 
 Check out the repository on Github: 
 https://github.com/stephtf/employee-tracker.git
