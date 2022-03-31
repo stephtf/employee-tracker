@@ -12,4 +12,4 @@ Check out the repository on Github:
 https://github.com/stephtf/employee-tracker.git
 
 ## Questions 
-If you have any questions about the repo, open an issue or contact me directly at stephfajardo@gatech.edu. You can find more of my work at [stephtf](https://github.com/stephtf/).
+If you have any questions about the repo, open an issue or contact me directly at stfajardo@gmail.com. You can find more of my work at [stephtf](https://github.com/stephtf/) or by visiting my website at [https://www.stephfajardo.com](https://www.stephfajardo.com).
